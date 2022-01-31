@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager API</title>
+
+    <style>
+      body {
+        background-color: #8bc6ec;
+        background-image: linear-gradient(206deg, #b2c2cc 0%, #b5b6d0 100%);
+        background-repeat: no-repeat;
+
+        /* background-color: #aebac6a8; */
+        /* color: rgb(53, 18, 18); */
+        font-size: 1.2rem;
+        padding: 10px 10px;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .item {
+        display: inline;
+        padding: 0px 20px;
+        /* background-color: #70809085; */
+        margin: 5px 5px;
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+      div {
+        margin-top: 5px;
+      }
+      .path {
+        font-size: 1.3rem;
+        color: rgb(68 31 31);
+        background-color: wheat;
+        padding: 5px 5px;
+        border-radius: 5px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .a {
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Task Manager API</h1>
+
+    <div class="a">
+      Path :
+      <a> https://rohan-task-managerapp.herokuapp.com </a>
+    </div>
+
+    <div class="container">
+      <div class="item">
+        <h3>Create User(SignUp)</h3>
+        <p class="type">Request Type : POST</p>
+        <span class="path">/users</span>
+        <pre>
+      body : {  
+          "name" : "Rohan",
+          "email" : "rohan@gmail.com", 
+          "password" : "password@123" 
+      }
+          </pre
+        >
+        <p>
+          Will receive <b>Authorization</b> Token (to be used in future) and
+          details of the user Created.
+        </p>
+      </div>
+
+      <div class="item">
+        <h3>Login User</h3>
+        <p class="type">Request Type : POST</p>
+        <span class="path">/users/login</span>
+        <pre>
+      body : { 
+          "email" : "rohan@gmail.com",
+          "password" : "password@123" 
+      }</pre
+        >
+        <p>
+          Will receive <b>Authorization</b> Token (to be used in future) and
+          details of the user LoggedIn.
+        </p>
+      </div>
+
+      <div class="item">
+        <h3>Create Tasks</h3>
+        <p class="type">Request Type : POST</p>
+        <span class="path">/tasks</span>
+        Authorization : Bearer {token}
+        <pre>
+      body : { 
+          "description" : "Data Structures",
+          "completed" : false 
+      }
+          </pre
+        >
+      </div>
+
+      <div class="item">
+        <h3>Reading all tasks</h3>
+        <p class="type">Request Type : GET</p>
+        <span class="path">/tasks</span>
+        <p>Options / Params</p>
+        <ul>
+          <li>sortBy=createdAt:{desc or asc}</li>
+          <li>completed={false or true}</li>
+          <li>limit={number of results}</li>
+          <li>skip={number of tasks}</li>
+        </ul>
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+
+      <div class="item">
+        <h3>Read own profile</h3>
+        <p class="type">Request Type : GET</p>
+        <span class="path">/users/me</span>
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+
+      <div class="item">
+        <h3>Reading specific task</h3>
+        <p class="type">Request Type : GET</p>
+        <span class="path">/tasks:{id}</span>
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+
+      <div class="item">
+        <h3>Updating User</h3>
+        <p class="type">Request Type : PUT / PATCH</p>
+        <span class="path">/users/me</span>
+        <pre>
+      body : {
+          "name" : "Rohan Sachdeva",
+          "password" : "password@123"
+      }
+          </pre
+        >
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+
+      <div class="item">
+        <h3>Updating Task</h3>
+        <p class="type">Request Type : PUT / PATCH</p>
+        <span class="paths" an class="path">/tasks/{id}</span>
+        <pre>
+      body : {
+          "completed" : true
+      }
+        </pre>
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+
+      <div class="item">
+        <h3>Delete User</h3>
+        <p class="type">Request Type : DELETE</p>
+        <span class="path">/users/me</span>
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+      <div class="item">
+        <h3>Delete Task</h3>
+        <p class="type">Request Type : DELETE</p>
+        <span class="path">/tasks/{id}</span>
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+      <div class="item">
+        <h3>Logout User</h3>
+        <p class="type">Request Type : POST</p>
+        <span class="path">/users/logout</span>
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+      <div class="item">
+        <h3>Logout from all devices/sessions</h3>
+        <p class="type">Request Type : POST</p>
+        <span class="path">/users/logoutAll</span>
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+      <div class="item">
+        <h3>Profile pic upload</h3>
+        <p class="type">Request Type : POST</p>
+        <span class="path">/users/me/avatar</span>
+        <pre>
+        body : {
+            avatar : {file}
+        }
+    </pre
+        >
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+
+      <div class="item">
+        <h3>Delete profile pic</h3>
+        <p class="type">Request Type : DELETE</p>
+        <span class="path">users/me/avatar</span>
+        <p>In <b>Header</b> : Authorization : Bearer {token}</p>
+      </div>
+    </div>
+
+    <!-- <div class="footer">Created by Rohan Sachdeva</div> -->
+  </body>
+</html>
